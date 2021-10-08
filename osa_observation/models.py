@@ -17,4 +17,4 @@ class failure(models.Model):
     affected_customer = models.CharField('影响人数', max_length=255)
     affected_orders = models.CharField('影响单量', max_length=255)
     affected_amount = models.CharField('影响金额', max_length=255)
-    state = models.IntegerField('填写状态', max_length=11, default=0)
+    state = models.IntegerField('填写状态', default=0)

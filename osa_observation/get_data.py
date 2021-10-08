@@ -1,5 +1,3 @@
-import time
-import datetime
 import requests
 from apscheduler.schedulers.background import BackgroundScheduler
 from osa_observation.failure_serializers import failureSerializer
@@ -39,7 +37,7 @@ def store_from_tianyan():
         s.save()
 
 
-# 定期工作
+# 接口获取数据
 def store_on_schedule_job():
     new_data = request_data('天眼接口')
     old_ids = failure.objects.all()[0].id
@@ -55,7 +53,7 @@ def store_on_schedule_job():
             s.save()
 
 
-# 设置定期任务
+# 定时获取数据
 def store_on_schedule():
     schedule = BackgroundScheduler()
     schedule.add_job(store_on_schedule_job, 'interval', hours=3)
