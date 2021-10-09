@@ -1,7 +1,7 @@
 import requests
 from apscheduler.schedulers.background import BackgroundScheduler
-from osa_observation.failure_serializers import failureSerializer
-from osa_observation.models import failure
+from .failure_serializers import failureSerializer
+from .models import failure
 
 
 # 请求报头

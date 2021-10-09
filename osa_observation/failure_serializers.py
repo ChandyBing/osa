@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from rest_framework.exceptions import ValidationError
-from osa_observation.models import failure
+from .models import failure
 
 
 class failureSerializer(serializers.ModelSerializer):
