@@ -1,7 +1,7 @@
 # Create your views here.
 import json
 from django.http import HttpResponse
-from django.shortcuts import get_list_or_404
+from django.shortcuts import get_list_or_404, render
 from osa_observation.get_data import *
 from osa_observation.models import failure
 from osa_observation.failure_serializers import failureSerializer
@@ -71,7 +71,7 @@ def store_data(request):
 
 
 def complete_failure_list(request):
-    query = get_list_or_404(failure, state=0)
+    query = get_list_or_404(failure, state=1)
     response_data = failureSerializer(instance=query, many=True).data
     response = {'msg': 1, 'status': 'success', 'data': response_data}
     return HttpResponse(json.dumps(response))
@@ -85,7 +85,7 @@ def system_failure_list(request, request_id):
         '6': '数据中台', '7': '新客服', '8': '集中-cBSS'
     }
     system_name = system_dict[(str(request_id))]
-    query = get_list_or_404(failure, state=0, failure_system_name=system_name)
+    query = get_list_or_404(failure, state=1, failure_system_name=system_name)
     response_data = failureSerializer(instance=query, many=True).data
     response = {'msg': 1, 'status': 'success', 'data': response_data}
     return HttpResponse(json.dumps(response))
@@ -110,18 +110,18 @@ def single_failure(request, request_id):
     response_data = {
         'id': data_list[0]['id'], 'failure_system_name': data_list[0]['failure_system_name'],
     }
-    response = {'msg': 1, 'status': 'success', 'data': response_data}
-    return HttpResponse(json.dumps(response))
+    response = {'msg': 1, 'status': 'success', 'request_id': request_id,'data': response_data}
+    return render(request, 'osa_observation/submit.html', response)
 
 
 def add_data(request, request_id):
-    a_c = request.POST('a_c')
-    a_o = request.POST('a_o')
-    a_a = request.POST('a_a')
+    a_c = request.POST['a_c']
+    a_o = request.POST['a_o']
+    a_a = request.POST['a_a']
     store_from_form(request_id, a_c, a_o, a_a)
     response = {'msg': 1, 'status': 'success'}
-    return HttpResponse(response)
+    return HttpResponse(json.dumps(response))
 
 
 def index(request):
-    return store_data(request)
+    return render(request, 'osa_observation/index.html')
