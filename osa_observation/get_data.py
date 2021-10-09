@@ -30,7 +30,7 @@ def store_from_tianyan():
         failure.objects.all().delete()
 
     # 数据入库
-    all_data = request_data('天眼接口')
+    all_data = request_data('http://localhost:8000/osa_observation/CompleteList/8/')['data']
     for data in all_data:
         s = failureSerializer(data=data)
         s.is_valid(raise_exception=True)

@@ -18,14 +18,17 @@ class failureSerializer(serializers.ModelSerializer):
             'failure_level': {'required': False},
             'measure_completion_status': {'required': False},
             'affected_customer': {
+                'allow_blank': True,
                 'allow_null': True,
                 'required': False
             },
             'affected_orders': {
+                'allow_blank': True,
                 'allow_null': True,
                 'required': False
             },
             'affected_amount': {
+                'allow_blank': True,
                 'allow_null': True,
                 'required': False
             },

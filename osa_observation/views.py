@@ -67,14 +67,14 @@ def store_data(request):
         response = {'msg': 1, 'status': 'success'}
     except f.DoesNotExist:
         response = {'msg': 0, 'status': 'failed'}
-    return HttpResponse(response)
+    return HttpResponse(json.dumps(response))
 
 
 def complete_failure_list(request):
-    all_data = get_list_or_404(failure, state=1)
-    fs = failureSerializer(instance=all_data, many=True)
-    response = {'msg': 1, 'status': 'success', 'data': fs.data}
-    return HttpResponse(response)
+    query = get_list_or_404(failure, state=0)
+    response_data = failureSerializer(instance=query, many=True).data
+    response = {'msg': 1, 'status': 'success', 'data': response_data}
+    return HttpResponse(json.dumps(response))
 
 
 def system_failure_list(request, request_id):
@@ -82,13 +82,13 @@ def system_failure_list(request, request_id):
         '0': '订单中心', '1': '创新头条',
         '2': '活动中心', '3': '联通APP',
         '4': '汇聚中心', '5': '产商品中心',
-        '6': '数据中台', '7': '新客服'
+        '6': '数据中台', '7': '新客服', '8': '集中-cBSS'
     }
-    system_name = system_dict.get(str(request_id))
-    system_data = get_list_or_404(failure, state=1, failure_system_name=system_name)
-    fs = failureSerializer(instance=system_data, many=True)
-    response = {'msg': 1, 'status': 'success', 'data': fs.data}
-    return HttpResponse(response)
+    system_name = system_dict[(str(request_id))]
+    query = get_list_or_404(failure, state=0, failure_system_name=system_name)
+    response_data = failureSerializer(instance=query, many=True).data
+    response = {'msg': 1, 'status': 'success', 'data': response_data}
+    return HttpResponse(json.dumps(response))
 
 
 def incomplete_failure_list(request):
@@ -97,9 +97,19 @@ def incomplete_failure_list(request):
     response_data = []
     for raw_data in data_list:
         shuffled_data = {
-            'id': raw_data['id'], 'failure_system_name': raw_data['failure_system_name']
+            'id': raw_data['id'], 'failure_system_name': raw_data['failure_system_name'],
         }
         response_data.append(shuffled_data)
+    response = {'msg': 1, 'status': 'success', 'data': response_data}
+    return HttpResponse(json.dumps(response))
+
+
+def single_failure(request, request_id):
+    query = get_list_or_404(failure, id=request_id, state=0)
+    data_list = failureSerializer(instance=query, many=True).data
+    response_data = {
+        'id': data_list[0]['id'], 'failure_system_name': data_list[0]['failure_system_name'],
+    }
     response = {'msg': 1, 'status': 'success', 'data': response_data}
     return HttpResponse(json.dumps(response))
 
@@ -114,4 +124,4 @@ def add_data(request, request_id):
 
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the polls index.")
+    return store_data(request)

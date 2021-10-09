@@ -37,4 +37,4 @@ def request_data(url):
 
 
 if __name__ == '__main__':
-    dirt_test()
+    print(request_data('http://localhost:8000/osa_observation/CompleteList/8/')['data'])
