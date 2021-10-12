@@ -62,13 +62,17 @@ def store_on_schedule():
 
 # 获取表单数据
 def store_from_form(f_id, a_c, a_o, a_a):
-    f = failure.objects.get(id=f_id)
-    update_data = {
-        'affected_customer': a_c,
-        'affected_orders': a_o,
-        'affected_amount': a_a,
-        'state': 1
-    }
-    fs = failureSerializer(instance=f, data=update_data)
-    fs.is_valid(raise_exception=True)
-    fs.save()
+    f = failure.objects.filter(id=f_id)
+    if len(f) == 1:
+        update_data = {
+            'affected_customer': a_c,
+            'affected_orders': a_o,
+            'affected_amount': a_a,
+            'state': 1
+        }
+        fs = failureSerializer(instance=f.first(), data=update_data)
+        fs.is_valid(raise_exception=True)
+        fs.save()
+        return True
+    else:
+        return False

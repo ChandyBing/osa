@@ -5,8 +5,10 @@
     <title>submit_test</title>
 </head>
 <body>
-<form action="/osa_observation/IncompleteList/{{ request_id }}/submit/" method="post">
+
+<form action="/osa_observation/partlist/submit/" method="post">
     {% csrf_token %}
+    <input name="failure_id" value="{{failure_id}}"></input>>
     <input type="text" name="a_c">
     <input type="text" name="a_o">
     <input type="text" name="a_a">
