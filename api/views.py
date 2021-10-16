@@ -41,20 +41,21 @@ class FailueList(viewsets.ModelViewSet):
     queryset = failure.objects.all()
     serializer_class = failureSerializer
 
-    def failure_list_all(self, request: Request, pagenum, pagesize, query='', system_name=''):
+    def failure_list_all(self, request: Request, pagenum=1, pagesize=10, query='', system_name=''):
         """
-            获取所有系统已填写故障数据
+            获取所有/指定系统已填写故障数据
 
             入参:
-                request: 请求
-                pagenum: 当前页码
-                pagesize: 单页条数
-                query: 故障现象（可选）
+                request: 请求；
+                pagenum: 当前页码；
+                pagesize: 单页条数；
+                system_name: 故障所属系统名（可选）；
+                query: 故障现象（可选）。
 
             返回:
-                total: 总页码
-                pagenum: 当前页码
-                failureList: 故障列表
+                total: 总页码；
+                pagenum: 当前页码；
+                failureList: 故障列表。
 
         """
 
@@ -79,20 +80,21 @@ class FailueList(viewsets.ModelViewSet):
         response = {'total': pagecount, 'pagenum': pagenum, 'failureList': response_data}
         return HttpResponse(json.dumps(response, ensure_ascii=False))
 
-    def failure_list_part(self, request: Request, pagenum, pagesize, query='', system_name=''):
+    def failure_list_part(self, request: Request, pagenum=1, pagesize=10, query='', system_name=''):
         """
-            获取所有系统待填写故障数据
+            获取所有/指定系统待填写故障数据
 
             入参:
-                request: 请求
-                pagenum: 当前页码
-                pagesize: 单页条数
-                query: 故障现象（可选）
+                request: 请求；
+                pagenum: 当前页码；
+                pagesize: 单页条数；
+                system_name: 故障所属系统名（可选）；
+                query: 故障现象（可选）。
 
             返回:
-                total: 总页码
-                pagenum: 当前页码
-                failureList: 故障列表
+                total: 总页码；
+                pagenum: 当前页码；
+                failureList: 故障列表。
         """
 
         # 查询数据库
@@ -119,11 +121,11 @@ class FailueList(viewsets.ModelViewSet):
             获取单个待填写故障数据
 
             入参:
-                request: 请求
-                failure_id: 故障唯一标识
+                request: 请求；
+                failure_id: 故障唯一标识。
 
             返回:
-                failureList: 响应数据
+                failureList: 响应数据。
         """
 
         # 查询数据库
@@ -141,11 +143,12 @@ class FailueList(viewsets.ModelViewSet):
             将获取的表单数据存入数据库
 
             入参:
-                request: 请求
-                failure_id: 故障唯一标识
+                request: 请求；
+                failure_id: 故障唯一标识。
 
-            返回: msg: 响应成功/失败信息
-                     status: 响应成功/失败状态
+            返回:
+                msg: 响应成功/失败信息；
+                status: 响应成功/失败状态。
         """
         if request.method == 'POST':
             # 获取表单传入的参数

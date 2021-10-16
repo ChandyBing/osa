@@ -22,23 +22,19 @@ from rest_framework import routers, permissions
 
 from api import views
 
-
-
 schema_view = get_schema_view(
     openapi.Info(
-        title="测试工程API",
+        title="API",
         default_version='v1.0',
-        description="测试工程接口文档",
-        terms_of_service="https://www.cnblogs.com/jinjiangongzuoshi/",
-        contact=openapi.Contact(email="狂师"),
-        license=openapi.License(name="BSD License"),
+        description="接口文档",
+        contact=openapi.Contact(email="huangjx101"),
     ),
     public=True,
     permission_classes=(permissions.AllowAny,),
 )
 
 router = routers.DefaultRouter()
-router.register(r'api', views.FailueList)
+router.register('api', views.FailueList)
 urlpatterns = [
     path('api/', include('api.urls')),
     path('api-auth/', include('rest_framework.urls', namespace='rest_framework')),
