@@ -37,4 +37,7 @@ def request_data(url):
 
 
 if __name__ == '__main__':
-    print(request_data('http://localhost:8000/osa_observation/CompleteList/8/')['data'])
+    # print(request_data('http://localhost:8000/osa_observation/CompleteList/8/')['data'])
+    a = 1
+    a = a+2
+    print(a)

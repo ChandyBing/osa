@@ -1,1 +1,0 @@
-import osa_observation

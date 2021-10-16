@@ -6,7 +6,7 @@
 </head>
 <body>
 
-<form action="/osa_observation/partlist/submit/" method="post">
+<form action="/api/partlist/submit/" method="post">
     {% csrf_token %}
     <input name="failure_id" value="{{failure_id}}"></input>>
     <input type="text" name="a_c">

@@ -1,6 +1,6 @@
 import requests
 from apscheduler.schedulers.background import BackgroundScheduler
-from .failure_serializers import failureSerializer
+from .serializers import failureSerializer
 from .models import failure
 
 
