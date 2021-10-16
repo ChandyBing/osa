@@ -6,12 +6,12 @@
 </head>
 <body>
 
-<form action="/api/partlist/submit/" method="post">
+<form action="/api/partlist/addinfo/{{failureList.0.id}}/" method="post">
     {% csrf_token %}
-    <input name="failure_id" value="{{failure_id}}"></input>>
-    <input type="text" name="a_c">
-    <input type="text" name="a_o">
-    <input type="text" name="a_a">
+    <p>{{failureList.0.id}}</p>>
+    <input type="text" name="ac">
+    <input type="text" name="ao">
+    <input type="text" name="aa">
     <input type="submit" value="录入">
 </form>
 </body>

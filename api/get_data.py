@@ -76,3 +76,56 @@ def store_from_form(f_id, a_c, a_o, a_a):
         return True
     else:
         return False
+
+
+def insert():
+    dataset = [{
+        'failure_system_name': '集中-cBSS',
+        'failure_happen_time': '2021-07-01 07:35:00',
+        'failure_recover_time': '2021-07-01 07:37:00',
+        'keep_time': '2',
+        'failure_scope_batch_id': '北京,江苏,福建,云南,黑龙江,浙江,天津,上海,甘肃,广东,四川,广西,西藏,辽宁,湖南,新疆,江西',
+        'failure_impact': '73.1meta节点宕库，影响新架构1-4域计费批价延迟，账管查缴办部分失败，信控停开机延迟',
+        'failure_level': '一般故障',
+        'measure_completion_status': '1/1'
+    }, {
+        'failure_system_name': '辽宁-电子发票系统',
+        'failure_happen_time': '2021-07-02 09:50:00',
+        'failure_recover_time': '2021-07-02 10:06:00',
+        'keep_time': '16',
+        'failure_scope_batch_id': '辽宁',
+        'failure_impact': '影响辽宁省分开具电子普通发票',
+        'failure_level': '一般故障',
+        'measure_completion_status': '2/2'
+    }, {
+        'failure_system_name': '集中-智慧客服',
+        'failure_happen_time': '2021-07-03 09:21:00',
+        'failure_recover_time': '2021-07-03 09:28:00',
+        'keep_time': '7',
+        'failure_scope_batch_id': '内蒙古,北京,山东,河北,山西,浙江,青海,湖北,西藏,四川,重庆,贵州,甘肃,宁夏,新疆,黑龙江',
+        'failure_impact': '10010呼入提示繁忙，提示稍后再拨',
+        'failure_level': '一般故障',
+        'measure_completion_status': '2/2'
+    }, {
+        'failure_system_name': '黑龙江-省分接口',
+        'failure_happen_time': '2021-07-03 18:00:00',
+        'failure_recover_time': '2021-07-03 18:13:00',
+        'keep_time': '13',
+        'failure_scope_batch_id': '黑龙江',
+        'failure_impact': '携号转网用户',
+        'failure_level': '一般故障',
+        'measure_completion_status': '0/0'
+    }, {
+        'failure_system_name': '山西-云网短信平台',
+        'failure_happen_time': '2021-07-06 15:00:00',
+        'failure_recover_time': '2021-07-06 16:00:00',
+        'keep_time': '60',
+        'failure_scope_batch_id': '山西',
+        'failure_impact': '携转用户收不到携转授权码，无法查询携出资格..',
+        'failure_level': '待定级',
+        'measure_completion_status': '1/1'
+    }]
+    for data in dataset:
+        s = failureSerializer(data=data)
+        s.is_valid(raise_exception=True)
+        s.save()
