@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="c3340e8b-3d62-40aa-ae84-aa500e4b7d44" name="localhost">
+        <fileTransfer rootFolder="/home/workspace/osa" accessType="SFTP" host="192.168.139.131" port="22" sshConfigId="35882ff3-82af-4096-8882-c631e10957b5" sshConfig="root@192.168.139.131:22 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>
