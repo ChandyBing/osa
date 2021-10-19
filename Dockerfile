@@ -4,7 +4,7 @@ FROM python:3.7
 MAINTAINER yuki
 
 ## 创建 code 文件夹并将其设置为工作目录
-#RUN mkdir /workspace
+RUN mkdir /workspace
 WORKDIR /workspace
 
 ## 更新 apt-get
