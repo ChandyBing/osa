@@ -33,7 +33,8 @@ def store_data2(request):
 
 
 def add_info_test(request, failure_id):
-    url = 'http://127.0.0.1:8000/api/partlist/failure_id=' + str(failure_id)
+    url = 'http://10.116.8.48:8000/api/partlist/failure_id=' + str(failure_id)
+    print(url)
     return render(request, 'api/submit.html', request_data(url))
 
 

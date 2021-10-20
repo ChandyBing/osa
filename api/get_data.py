@@ -8,7 +8,7 @@ from .models import failure
 def header():
     headers = {
         "User-Agent": 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) '
-                      'Chrome/94.0.4606.61 Safari/537.36 '
+                      'Chrome/94.0.4606.81 Safari/537.36 '
     }
     return headers
 
@@ -124,7 +124,7 @@ def insert():
         'failure_impact': '携转用户收不到携转授权码，无法查询携出资格..',
         'failure_level': '待定级',
         'measure_completion_status': '1/1'
-    },{
+    }, {
         'failure_system_name': '集中-cBSS',
         'failure_happen_time': '2021-07-01 07:35:00',
         'failure_recover_time': '2021-07-01 07:37:00',
@@ -169,7 +169,7 @@ def insert():
         'failure_impact': '携转用户收不到携转授权码，无法查询携出资格..',
         'failure_level': '待定级',
         'measure_completion_status': '1/1'
-    },{
+    }, {
         'failure_system_name': '集中-cBSS',
         'failure_happen_time': '2021-07-01 07:35:00',
         'failure_recover_time': '2021-07-01 07:37:00',
