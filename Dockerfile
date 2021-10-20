@@ -4,7 +4,6 @@ FROM python:3.7
 MAINTAINER yuki
 
 ## 创建 code 文件夹并将其设置为工作目录
-RUN mkdir /workspace
 WORKDIR /workspace
 
 ## 更新 apt-get
@@ -23,5 +22,5 @@ RUN pip install -r requirements.txt
 ADD . /workspace/
 
 # 设置启动命令
-CMD [ "/bin/bash", "-ce", "python /workspace/start.py > /workspace/static/log/total.log" ]
+CMD [ "/bin/bash", "-ce", "python /workspace/start.py" ]
 #EXPOSE 8008
